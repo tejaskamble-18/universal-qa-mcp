@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clean: open modal dialog</title>
+<link rel="stylesheet" href="../base.css">
+<style>
+  main { padding: 16px; }
+  .backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.4); z-index: 50; }
+  .modal { position: fixed; z-index: 60; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(480px, calc(100vw - 32px));
+           max-height: calc(100vh - 32px); overflow: auto; background: #ffffff; padding: 20px; box-sizing: border-box; border-radius: 8px; }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+</style>
+</head>
+<body>
+  <main>
+    <h1>Profile</h1>
+    <p>Your profile is visible to members of your organisation.</p>
+    <button id="edit">Edit profile</button>
+    <a href="#help">Help</a>
+  </main>
+  <div class="backdrop"></div>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
+    <h2 id="mt">Confirm changes</h2>
+    <p>You changed your display name, time zone and notification preferences.</p>
+    <p>Members of your organisation will see the new display name on comments and reviews.</p>
+    <p>Notification changes apply to new events only; existing digests are not resent.</p>
+    <p>Time zone changes affect how dates are shown across dashboards and exports.</p>
+    <p>You can revert any of these changes later from the profile page.</p>
+    <div class="modal-actions">
+      <button>Cancel</button>
+      <button>Save changes</button>
+    </div>
+  </div>
+</body>
+</html>

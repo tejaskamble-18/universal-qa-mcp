@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Broken: clipped text</title>
+<link rel="stylesheet" href="../base.css">
+<style>
+  section { margin: 16px; }
+  /* DEFECT: fixed-width button hides most of its label without an ellipsis. */
+  .btn-fixed { width: 96px; white-space: nowrap; overflow: hidden; }
+  /* DEFECT: box shorter than the line box cuts the glyphs in half. */
+  .badge-label { display: inline-block; height: 14px; line-height: 28px; overflow: hidden; font-size: 16px; padding: 0 6px; background: #eef2ff; }
+</style>
+</head>
+<body>
+  <h1>Reports</h1>
+  <section data-defect="clipped-button-label">
+    <button class="btn-fixed" id="btn-clip">Download quarterly report</button>
+  </section>
+  <section data-defect="clipped-badge">
+    <span class="badge-label" id="badge-label">Pending review</span>
+  </section>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "name": "universal-qa-mcp",
+  "version": "0.1.0",
+  "description": "Framework-independent MCP server for deterministic, evidence-based UI/layout auditing of authorized web applications.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "private": true,
+  "bin": {
+    "universal-qa-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node scripts/copy-inpage.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:unit": "vitest run test/unit",
+    "test:acceptance": "vitest run test/acceptance",
+    "start": "node dist/index.js",
+    "fixtures": "node scripts/serve-fixtures.mjs",
+    "audit": "node dist/cli.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.4.0",
+    "playwright": "1.65.1",
+    "pngjs": "7.0.0",
+    "zod": "^4.2.0"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.4.0",
+    "@types/node": "^26.0.0",
+    "@types/pngjs": "6.0.5",
+    "typescript": "6.0.3",
+    "vitest": "5.1.1"
+  }
+}

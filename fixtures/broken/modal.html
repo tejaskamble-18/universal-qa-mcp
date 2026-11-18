@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Broken: modal taller than the viewport</title>
+<link rel="stylesheet" href="../base.css">
+<style>
+  main { padding: 16px; }
+  .backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.45); }
+  /* DEFECT: fixed dialog with no max-height and no internal scroll. */
+  .modal { position: fixed; top: 40px; left: 50%; transform: translateX(-50%); width: min(560px, calc(100vw - 32px));
+           background: #ffffff; padding: 20px; border-radius: 8px; box-sizing: border-box; }
+  .modal p { margin: 0 0 12px; }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+</style>
+</head>
+<body>
+  <main>
+    <h1>Account</h1>
+    <p>Manage your profile and security settings.</p>
+    <button id="bg-btn">Edit profile</button>
+  </main>
+  <div class="backdrop" id="backdrop"></div>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" data-defect="modal-too-tall">
+    <h2 id="modal-title">Terms of service</h2>
+    <p>1. These terms govern your use of the service and form a binding agreement between you and the provider.</p>
+    <p>2. You must keep your credentials confidential and notify us promptly of any unauthorised access.</p>
+    <p>3. Fees are billed in advance and are non-refundable except where required by applicable law.</p>
+    <p>4. We may update features from time to time and will give notice of material changes to these terms.</p>
+    <p>5. You retain ownership of your content and grant us the licence needed to operate the service.</p>
+    <p>6. Acceptable use: no unlawful content, no abuse of the platform, and no attempts to disrupt the service.</p>
+    <p>7. Either party may terminate for material breach that remains uncured thirty days after notice.</p>
+    <p>8. Liability is limited to the fees paid in the twelve months preceding the claim.</p>
+    <p>9. These terms are governed by the laws of the jurisdiction stated in your order form.</p>
+    <p>10. Notices must be sent in writing to the addresses listed in your account settings.</p>
+    <p>11. If any provision is unenforceable, the remaining provisions remain in full force and effect.</p>
+    <p>12. These terms constitute the entire agreement between the parties regarding the service.</p>
+    <p>13. Data processing terms are incorporated by reference and apply to personal data you upload.</p>
+    <p>14. Support is provided during business hours according to the plan you purchased.</p>
+    <div class="modal-actions">
+      <button id="modal-decline">Decline</button>
+      <button id="modal-confirm">Accept</button>
+    </div>
+  </div>
+</body>
+</html>

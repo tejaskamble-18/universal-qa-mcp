@@ -1,0 +1,31 @@
+*, *::before, *::after { box-sizing: border-box; animation: none !important; transition: none !important; }
+html { font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.4; color: #1f2328; background: #fff; }
+body { margin: 0; }
+header { display: flex; align-items: center; gap: 16px; padding: 10px 16px; border-bottom: 1px solid #d0d7de; flex-wrap: wrap; }
+header nav { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+main { padding: 16px; }
+button { font: inherit; padding: 6px 12px; border: 1px solid #8c959f; border-radius: 6px; background: #f6f8fa; cursor: pointer; }
+.menu-wrap { position: relative; display: inline-block; }
+[role="menu"] { position: absolute; top: calc(100% + 4px); left: 0; min-width: 180px; background: #fff; border: 1px solid #8c959f; padding: 4px 0; margin: 0; list-style: none; z-index: 20; }
+[role="menu"] [role="menu"] { top: 0; left: 100%; }
+[role="menuitem"] { display: block; padding: 6px 12px; color: #1f2328; text-decoration: none; background: none; border: 0; width: 100%; text-align: left; border-radius: 0; }
+.field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; max-width: 360px; }
+.errors { color: #cf222e; }
+[role="tablist"] { display: flex; gap: 4px; border-bottom: 1px solid #d0d7de; margin-bottom: 12px; }
+[role="tab"] { border-radius: 6px 6px 0 0; }
+[role="tab"][aria-selected="true"] { background: #fff; border-bottom-color: #fff; font-weight: bold; }
+.tasks { list-style: none; padding: 0; max-width: 240px; }
+.tasks li { padding: 8px; margin: 4px 0; border: 1px solid #d0d7de; border-radius: 6px; background: #f6f8fa; cursor: grab; }
+.skeleton { color: #57606a; }
+.reports-list { max-width: 400px; }
+.reports-list li { padding: 12px 0; border-bottom: 1px solid #eee; }
+#toast:empty { display: none; }
+#toast { position: fixed; bottom: 16px; right: 16px; background: #1f883d; color: #fff; padding: 8px 12px; border-radius: 6px; }
+.steps { display: flex; gap: 8px; list-style: none; padding: 0; }
+.steps li[aria-current="step"] { font-weight: bold; }
+/* Deliberately broken page: a transparent full-screen layer left over by a cookie banner. */
+.cookie-layer { position: fixed; inset: 0; z-index: 50; background: transparent; }
+.cookie-banner { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 51; background: #24292f; color: #fff; padding: 12px; border-radius: 6px; display: flex; gap: 12px; align-items: center; }
+.cards { display: flex; gap: 16px; align-items: flex-start; }
+.card { width: 140px; height: 80px; border: 1px solid #d0d7de; border-radius: 6px; padding: 8px; }
+#card-c { margin-top: 9px; }

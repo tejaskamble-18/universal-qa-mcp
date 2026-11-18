@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clean: popups, carousel, accordion</title>
+<link rel="stylesheet" href="../base.css">
+<style>
+  .page { padding: 16px; }
+  .row { margin-top: 40px; display: flex; gap: 24px; align-items: center; }
+  .dropdown { position: relative; display: inline-block; }
+  .menu { position: absolute; top: calc(100% + 4px); left: 0; min-width: 200px; background: #ffffff; border: 1px solid #8c959f;
+          list-style: none; margin: 0; padding: 4px 0; z-index: 20; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+  .menu a { display: block; padding: 8px 12px; }
+  .tooltip-wrap { position: relative; display: inline-block; }
+  .tooltip { position: absolute; bottom: calc(100% + 6px); left: 0; background: #24292f; color: #ffffff; padding: 4px 8px;
+             border-radius: 4px; white-space: nowrap; font-size: 12px; line-height: 16px; }
+  .under { margin-top: 16px; max-width: 560px; }
+  .carousel { position: relative; overflow: hidden; width: 100%; max-width: 600px; height: 140px; margin-top: 180px; }
+  .track { display: flex; width: 300%; }
+  .slide { flex: 0 0 33.333%; height: 140px; padding: 16px; box-sizing: border-box; }
+  .accordion-panel { max-height: 0; overflow: hidden; }
+  details { margin-top: 16px; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <h1>Settings</h1>
+    <div class="row">
+      <div class="dropdown">
+        <button id="sort-trigger" aria-haspopup="menu" aria-expanded="true" aria-controls="sort-menu">Sort</button>
+        <ul class="menu" role="menu" id="sort-menu" aria-labelledby="sort-trigger">
+          <li><a role="menuitem" href="#newest">Newest</a></li>
+          <li><a role="menuitem" href="#oldest">Oldest</a></li>
+          <li><a role="menuitem" href="#name">Name</a></li>
+          <li><a role="menuitem" href="#size">Size</a></li>
+        </ul>
+      </div>
+      <span class="tooltip-wrap">
+        <button aria-describedby="tip">Info</button>
+        <span class="tooltip" role="tooltip" id="tip">Shows account details</span>
+      </span>
+    </div>
+    <p class="under">This paragraph sits underneath the open sort menu, which is expected while the menu is open.
+      It also contains a <a href="#covered">link that the menu covers</a> on narrow screens.</p>
+
+    <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Highlights">
+      <div class="track">
+        <div class="slide" style="background:#ddf4ff">Slide one <a href="#s1">Learn more</a></div>
+        <div class="slide" style="background:#fff8c5" aria-hidden="true" inert>Slide two <a href="#s2">Learn more</a></div>
+        <div class="slide" style="background:#ffebe9" aria-hidden="true" inert>Slide three</div>
+      </div>
+    </div>
+
+    <button aria-expanded="false" aria-controls="faq-1" style="margin-top:16px">How do refunds work?</button>
+    <div class="accordion-panel" id="faq-1">
+      <p>Refunds are processed within five business days of approval.</p>
+      <a href="#refunds">Refund policy</a>
+    </div>
+
+    <details>
+      <summary>Advanced</summary>
+      <p>Hidden until expanded.</p>
+    </details>
+  </div>
+</body>
+</html>

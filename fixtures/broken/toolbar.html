@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Broken: toolbar, spacing, alignment</title>
+<link rel="stylesheet" href="../base.css">
+<style>
+  .toolbar { display: flex; gap: 8px; padding: 12px; }
+  /* DEFECT: negative margin pulls Save over Open file. */
+  #btn-save { margin-left: -40px; }
+
+  .actions { display: flex; padding: 12px; }
+  .actions button { margin-right: 12px; padding: 6px 10px; }
+  /* DEFECT: one item has a larger margin than its siblings. */
+  #act-3 { margin-right: 32px; }
+
+  .cards { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; padding: 12px; }
+  .card { width: 150px; height: 90px; border: 1px solid #d0d7de; border-radius: 6px; padding: 8px; box-sizing: border-box; }
+  /* DEFECT: one card is pushed 7px down from its row. */
+  #card-3 { margin-top: 7px; }
+</style>
+</head>
+<body>
+  <h1>Toolbar</h1>
+  <div class="toolbar" id="toolbar" data-defect="overlapping-buttons">
+    <button id="btn-new">New</button>
+    <button id="btn-open">Open file</button>
+    <button id="btn-save">Save</button>
+    <button id="btn-export">Export</button>
+  </div>
+
+  <div class="actions" id="actions" data-defect="inconsistent-spacing">
+    <button id="act-1">One</button>
+    <button id="act-2">Two</button>
+    <button id="act-3">Three</button>
+    <button id="act-4">Four</button>
+    <button id="act-5">Five</button>
+  </div>
+
+  <div class="cards" id="cards" data-defect="misaligned-card">
+    <div class="card" id="card-1">Card 1</div>
+    <div class="card" id="card-2">Card 2</div>
+    <div class="card" id="card-3">Card 3</div>
+    <div class="card" id="card-4">Card 4</div>
+  </div>
+</body>
+</html>

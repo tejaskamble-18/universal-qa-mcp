@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Broken: dropdown placement</title>
+<link rel="stylesheet" href="../base.css">
+<style>
+  .panel { position: relative; overflow: hidden; height: 140px; border: 1px solid #d0d7de; margin: 16px; padding: 12px; }
+  .dropdown { position: relative; display: inline-block; }
+  .menu { position: absolute; top: 100%; left: 0; min-width: 180px; background: #ffffff; border: 1px solid #8c959f;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); margin: 4px 0 0; padding: 4px 0; list-style: none; z-index: 10; }
+  .menu a, .menu li[role="option"] { display: block; padding: 8px 12px; }
+  .toolbar-b { margin: 16px; padding: 12px; border: 1px solid #d0d7de; }
+  /* DEFECT: no positioned wrapper, so the menu is placed against the initial containing block. */
+  .anchorless { display: inline-block; }
+</style>
+</head>
+<body>
+  <h1>Reports</h1>
+  <!-- DEFECT: open menu is cut off by its overflow:hidden panel. -->
+  <section class="panel" id="panel-a" data-defect="clipped-dropdown">
+    <p>Filters</p>
+    <div class="dropdown">
+      <button id="trigger-a" aria-haspopup="menu" aria-expanded="true" aria-controls="menu-a">Sort by</button>
+      <ul class="menu" id="menu-a" role="menu" aria-labelledby="trigger-a">
+        <li><a role="menuitem" href="#newest">Newest first</a></li>
+        <li><a role="menuitem" href="#oldest">Oldest first</a></li>
+        <li><a role="menuitem" href="#largest">Largest first</a></li>
+        <li><a role="menuitem" href="#smallest">Smallest first</a></li>
+        <li><a role="menuitem" href="#owner">Owner</a></li>
+        <li><a role="menuitem" href="#status">Status</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="toolbar-b" id="toolbar-b" data-defect="detached-dropdown">
+    <p>Export your data in several formats.</p>
+    <div class="anchorless">
+      <button id="trigger-b" aria-haspopup="listbox" aria-expanded="true" aria-controls="menu-b">Format</button>
+      <ul class="menu" id="menu-b" role="listbox" aria-label="Export format">
+        <li role="option" aria-selected="true">CSV</li>
+        <li role="option" aria-selected="false">JSON</li>
+        <li role="option" aria-selected="false">Parquet</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>

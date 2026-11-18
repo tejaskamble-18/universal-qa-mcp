@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clean: valid layout patterns</title>
+<link rel="stylesheet" href="../base.css">
+<style>
+  body { padding-top: 56px; }
+  .site-header { position: fixed; top: 0; left: 0; right: 0; height: 56px; box-sizing: border-box; display: flex; align-items: center;
+                 justify-content: space-between; padding: 0 16px; background: #ffffff; border-bottom: 1px solid #d0d7de; z-index: 100; }
+  .skip-link { position: absolute; left: -9999px; top: 8px; z-index: 200; background: #ffffff; padding: 4px 8px; }
+  .skip-link:focus { left: 8px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  .nav-links { display: flex; gap: 16px; }
+  .header-actions { display: flex; align-items: center; gap: 12px; }
+  .menu-toggle { display: none; }
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .menu-toggle { display: inline-block; }
+  }
+  .icon-btn { position: relative; width: 40px; height: 40px; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
+  .icon-btn svg { width: 16px; height: 16px; }
+  .badge { position: absolute; top: -9px; right: -9px; min-width: 18px; height: 18px; border-radius: 9px; background: #cf222e; color: #ffffff;
+           font-size: 11px; line-height: 18px; text-align: center; }
+
+  .hero { position: relative; margin: 16px; }
+  .hero img { display: block; width: 100%; height: 200px; object-fit: cover; }
+  .hero .caption { position: absolute; left: 16px; bottom: 16px; margin: 0; color: #ffffff; background: rgba(0, 0, 0, 0.55); padding: 4px 8px; }
+
+  .avatars { display: flex; padding: 8px 16px; }
+  .avatars img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #ffffff; margin-left: -10px; }
+  .avatars img:first-child { margin-left: 0; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; padding: 16px; }
+  .card { border: 1px solid #d0d7de; border-radius: 8px; padding: 12px; min-width: 0; }
+  .card h3 { margin: 0 0 6px; font-size: 16px; line-height: 22px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card p.clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin: 0 0 8px; font-size: 14px; line-height: 20px; }
+
+  .table-wrap { overflow-x: auto; margin: 16px; border: 1px solid #d0d7de; }
+  .table-wrap table { width: 900px; border-collapse: collapse; }
+  .table-wrap td, .table-wrap th { border-bottom: 1px solid #d0d7de; padding: 8px; text-align: left; }
+
+  .long-link { overflow-wrap: anywhere; margin: 16px; }
+  .check { position: relative; display: inline-flex; align-items: center; gap: 8px; margin: 0 16px; }
+  .check input { position: absolute; left: 0; top: 0; opacity: 0; width: 20px; height: 20px; margin: 0; }
+  .check .box { width: 20px; height: 20px; border: 2px solid #57606a; border-radius: 4px; box-sizing: border-box; }
+  .note { margin: 16px; }
+  footer { padding: 16px; border-top: 1px solid #d0d7de; }
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <strong>Acme</strong>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#docs">Docs</a><a href="#pricing">Pricing</a><a href="#blog">Blog</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Notifications">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="#57606a"/></svg>
+        <span class="badge">3</span>
+      </button>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+    </div>
+  </header>
+  <nav id="mobile-menu" hidden aria-label="Mobile">
+    <a href="#docs">Docs</a><a href="#pricing">Pricing</a><a href="#blog">Blog</a>
+  </nav>
+
+  <main id="main">
+    <section class="hero">
+      <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='200'%3E%3Crect width='800' height='200' fill='%233a6ea5'/%3E%3C/svg%3E">
+      <p class="caption">Welcome to Acme</p>
+    </section>
+
+    <div class="avatars" aria-label="Team">
+      <img alt="A" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%23d4a72c'/%3E%3C/svg%3E">
+      <img alt="B" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%232da44e'/%3E%3C/svg%3E">
+      <img alt="C" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%238250df'/%3E%3C/svg%3E">
+      <img alt="D" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%23cf222e'/%3E%3C/svg%3E">
+      <img alt="E" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%230969da'/%3E%3C/svg%3E">
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <h3 title="Quarterly infrastructure cost review and optimisation plan">Quarterly infrastructure cost review and optimisation plan</h3>
+        <p class="clamp">We reviewed every service for idle capacity, reserved-instance coverage and storage tiering. The plan below
+          cuts projected spend by eighteen percent without affecting latency targets for any customer-facing workload.</p>
+        <a href="#r1">Read more</a>
+      </article>
+      <article class="card">
+        <h3>Release notes</h3>
+        <p class="clamp">Search is faster, exports can be scheduled, and the settings area has been reorganised into clear sections
+          with inline help for every option that previously required reading the documentation.</p>
+        <a href="#r2">Read more</a>
+      </article>
+      <article class="card">
+        <h3>Security</h3>
+        <p class="clamp">Single sign-on is now available on all plans.</p>
+        <a href="#r3">Read more</a>
+      </article>
+      <article class="card">
+        <h3>Billing</h3>
+        <p class="clamp">Invoices can be downloaded as PDF or CSV.</p>
+        <a href="#r4">Read more</a>
+      </article>
+    </div>
+
+    <div class="table-wrap" role="region" aria-label="Usage table" tabindex="0">
+      <table>
+        <thead><tr><th>Project</th><th>Owner</th><th>Region</th><th>Builds</th><th>Bandwidth</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr><td>marketing-site</td><td>Dana</td><td>eu-west</td><td>412</td><td>1.2 TB</td><td>Healthy</td><td><a href="#p1">Open</a></td></tr>
+          <tr><td>billing-api</td><td>Lee</td><td>us-east</td><td>1,093</td><td>310 GB</td><td>Healthy</td><td><a href="#p2">Open</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="long-link">Docs: https://docs.example.com/guides/getting-started/configure-your-first-project-with-environment-variables</p>
+    <label class="check"><input type="checkbox" name="remember"><span class="box"></span><span>Remember me</span></label>
+    <p class="note">Status <span class="sr-only">(updated every minute)</span> is shown above. <x-chip></x-chip></p>
+  </main>
+  <footer><p>© Acme</p></footer>
+  <script>
+    customElements.define('x-chip', class extends HTMLElement {
+      constructor() {
+        super();
+        const root = this.attachShadow({ mode: 'open' });
+        root.innerHTML = '<style>span{display:inline-flex;gap:6px;align-items:center;padding:2px 8px;border:1px solid #d0d7de;border-radius:12px}button{font:inherit;font-size:12px;padding:0 6px}</style>' +
+          '<span>Beta <button aria-label="Dismiss">×</button></span>';
+      }
+    });
+  </script>
+</body>
+</html>

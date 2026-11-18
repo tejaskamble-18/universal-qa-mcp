@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Broken: dashboard cards</title>
+<link rel="stylesheet" href="../base.css">
+<style>
+  .dash { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); grid-auto-rows: 180px; gap: 16px; padding: 16px; }
+  .card { border: 1px solid #d0d7de; border-radius: 8px; padding: 12px; box-sizing: border-box; }
+  .card h3 { margin: 0 0 8px; font-size: 16px; line-height: 22px; }
+  .card p { margin: 0 0 6px; font-size: 14px; line-height: 20px; }
+  /* DEFECT: card clips its own content, hiding the call-to-action button. */
+  #card-users { overflow: hidden; }
+</style>
+</head>
+<body>
+  <h1>Dashboard</h1>
+  <div class="dash" id="dash">
+    <!-- DEFECT: content taller than the fixed 180px grid row spills into the next row. -->
+    <section class="card" id="card-revenue" data-defect="spilling-card">
+      <h3>Revenue</h3>
+      <p>Revenue grew 12% week over week, driven by annual plan upgrades in the EMEA region.</p>
+      <p>Refunds were flat. Net revenue retention is 118% for the trailing twelve months.</p>
+      <p>Enterprise pipeline added four new opportunities above the regional target.</p>
+      <p>Self-serve conversion improved after the new onboarding checklist shipped.</p>
+    </section>
+    <section class="card" id="card-users" data-defect="hidden-control">
+      <h3>Active users</h3>
+      <p>Daily: 18,204</p>
+      <p>Weekly: 64,990</p>
+      <p>Monthly: 201,442</p>
+      <p>New this week: 2,310</p>
+      <p>Churned this week: 412</p>
+      <p>Reactivated: 95</p>
+      <button id="btn-view-users">View all users</button>
+    </section>
+    <!-- DEFECT: unbreakable URL overflows the card horizontally. -->
+    <section class="card" id="card-sessions" data-defect="overflowing-url">
+      <h3>Top referrer</h3>
+      <p id="long-url">https://analytics.example.com/referrers/AVeryLongUnbreakableSegment1234567890</p>
+    </section>
+    <section class="card" id="card-orders">
+      <h3>Orders</h3>
+      <p>1,204 orders this week, 38 awaiting fulfilment.</p>
+    </section>
+    <section class="card" id="card-tickets">
+      <h3>Tickets</h3>
+      <p>32 open tickets, median first response 41 minutes.</p>
+    </section>
+    <section class="card" id="card-uptime">
+      <h3>Uptime</h3>
+      <p>99.98% over the last 30 days.</p>
+    </section>
+  </div>
+</body>
+</html>
